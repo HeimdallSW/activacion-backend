@@ -2,11 +2,11 @@ module.exports = {
 
    // Establecimiento de parametros de conexión a la Base de Datos
      database: {
-        host: 'heimdall-homo-1.c7leum90fhsl.us-east-2.rds.amazonaws.com',
+        host: 'us-cdbr-east-04.cleardb.com',
         port: '3306',
-        user: 'admin',
-        password: 'WeBeatOs',
-        database: 'heimdall-homo-test' // 
+        user: 'bd44f845bbaf18',
+        password: 'ab2cde10',
+        database: 'heroku_b21b25474d81c3d' // 
      }
 
 
