@@ -14,14 +14,12 @@ exports.verificaRFC = async (req, res) => {
     [rfc],
     (err, result) => {
       if (err) {
-        res.status(500).send({message: 'Error'});
+        res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
         console.log(err);
-        //res.redirect ('./errorU');
       } else {
-        res.status(200).send({message: 'Exito en la petición'});
+        res.status(200).send(result);
+        // res.status(200).send({message: 'Exito en la petición'});
         console.log(result);
-        //res.redirect ('./exitoU');
-     
       }
     }
   );
