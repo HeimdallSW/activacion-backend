@@ -5,19 +5,15 @@ const pool = require("../config/dbConection.js");
 exports.verificaRFC = async (req, res) => {
 
   const {
-    ClienteRFC
+    rfc
   } = req.body;
   
   console.log(req.body);
 
 
-  const RFCingresado = {
-    ClienteRFC: rfc
-  };
-
   await pool.query(
     "SELECT RFC FROM cliente WHERE RFC = ?",
-    [RFCingresado],
+    [rfc],
     (err, result) => {
       if (err) {
         res.status(500).send({message: 'Error'});
