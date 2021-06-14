@@ -9,10 +9,8 @@ exports.verificaRFC = async (req, res) => {
   } = req.body;
   
   console.log(req.body);
-
-
   await pool.query(
-    "SELECT RFC FROM cliente WHERE RFC = ?",
+    "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
     [rfc],
     (err, result) => {
       if (err) {
@@ -20,9 +18,10 @@ exports.verificaRFC = async (req, res) => {
         console.log(err);
         //res.redirect ('./errorU');
       } else {
-        res.status(200).send({message: 'RFC existe'});
+        res.status(200).send({message: 'Exito en la petición'});
         console.log(result);
         //res.redirect ('./exitoU');
+     
       }
     }
   );
