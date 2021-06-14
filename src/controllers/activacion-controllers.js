@@ -9,16 +9,10 @@ exports.verificaRFC = async (req, res) => {
   } = req.body;
   
   console.log(req.body);
-};
-
-  /*const {
-    Clienterfc
-  } = req.body;
 
 
   const RFCingresado = {
-    idCliente,
-    RFC
+    Clienterfc
   };
 
   await pool.query(
