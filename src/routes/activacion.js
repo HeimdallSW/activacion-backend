@@ -1,7 +1,9 @@
 const { Router } = require ('express'); // Requerimos el METODO Router de Express
 const router = Router (); // Ejecuto el método y lo guardo en una constante router que usare en mi código
 
-
+router.get('/', (req, res) => {     
+    res.send("Servidor activo")
+});
 
 router.get('/verificacion', (req, res) => {     
     res.redirect('http://heimdall.aira.mx/ac-rfc')
