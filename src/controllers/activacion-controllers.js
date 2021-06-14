@@ -12,7 +12,7 @@ exports.verificaRFC = async (req, res) => {
 
 
   const RFCingresado = {
-    ClienteRFC
+    ClienteRFC: rfc
   };
 
   await pool.query(
