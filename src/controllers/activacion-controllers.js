@@ -3,9 +3,13 @@ const pool = require("../config/dbConection.js");
 
 //verifica RFC
 exports.verificaRFC = async (req, res) => {
-  const {
-    ClienteRFC
+  
+  console.log(req.body);
+
+  /*const {
+    Clienterfc
   } = req.body;
+
 
   const RFCingresado = {
     idCliente,

@@ -63,7 +63,7 @@
 
 //middleware propio CORS
 app.use((req,res, next) =>{
-  res.header('Access-Control-Allow-Origin','*');       //cualquiera puede hacer peticiones a la api
+  res.header('Access-Control-Allow-Origin','http://heimdall.aira.mx');       //cualquiera puede hacer peticiones a la api
   res.header('Access-Control-Allow-Headers','X-API-KEY, Origin, X-Requested-With, Content-Tipe, Accept, Access-Control-Request-Method'); //los header que va a permitir la api
   res.header('Access-Control-AlLow-Methods','POST, GET, PUT, DELETE, OPTIONS'); // metodos thhp que acepta
   res.header('LAlLow','POST, GET, PUT, DELETE, OPTIONS');
