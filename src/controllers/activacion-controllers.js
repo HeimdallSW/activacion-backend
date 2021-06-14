@@ -5,14 +5,14 @@ const pool = require("../config/dbConection.js");
 exports.verificaRFC = async (req, res) => {
 
   const {
-    Clienterfc
+    ClienteRFC
   } = req.body;
   
   console.log(req.body);
 
 
   const RFCingresado = {
-    Clienterfc
+    ClienteRFC
   };
 
   await pool.query(
