@@ -6,7 +6,7 @@ module.exports = {
         port: '3306',
         user: 'bd44f845bbaf18',
         password: 'ab2cde10',
-        database: 'heroku_b21b25474d81c3d' // 
+        database: 'heroku_b21b25474d81c3d'  
      }
 
 

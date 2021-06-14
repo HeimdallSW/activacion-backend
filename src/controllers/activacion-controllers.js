@@ -13,7 +13,7 @@ exports.verificaRFC = async (req, res) => {
   };
 
   await pool.query(
-    "INSERT INTO cliente SET?",
+    "SELECT RFC FROM cliente WHERE RFC = ?",
     [RFCingresado],
     (err, result) => {
       if (err) {
@@ -21,7 +21,7 @@ exports.verificaRFC = async (req, res) => {
         console.log(err);
         //res.redirect ('./errorU');
       } else {
-        res.status(200).send({message: 'Registro exitoso'});
+        res.status(200).send({message: 'RFC existe'});
         console.log(result);
         //res.redirect ('./exitoU');
       }
@@ -30,7 +30,7 @@ exports.verificaRFC = async (req, res) => {
 };
 
 // Validación de Token
-exports.validaToken = async (req, res) => {
+/*exports.validaToken = async (req, res) => {
     const {
       token
     } = req.body;
@@ -49,4 +49,4 @@ exports.validaToken = async (req, res) => {
         }
       }
     );
-  };
+  };*/
