@@ -10,9 +10,7 @@ exports.verificaRFC = async (req, res) => {
   console.log(req.body);
 
   await pool.query(
-    "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
-    [rfc],
-    (err, result) => {
+    "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", [rfc], (err, result) => {
       if (err) {
         res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
         console.log(err);
