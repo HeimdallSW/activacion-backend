@@ -1,8 +1,5 @@
 const pool = require("../config/dbConection.js");
 
-let rfcstored = rfc;
-
-
 //verifica RFC
 exports.verificaRFC = async (req, res) => {
 
@@ -11,7 +8,6 @@ exports.verificaRFC = async (req, res) => {
   } = req.body;
   
   console.log(req.body);
-  console.log(rfcstored);
 
   await pool.query(
     "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
