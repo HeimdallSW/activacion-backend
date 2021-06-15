@@ -1,5 +1,7 @@
 const pool = require("../config/dbConection.js");
 
+rfcstored = rfc;
+
 
 //verifica RFC
 exports.verificaRFC = async (req, res) => {
@@ -9,7 +11,8 @@ exports.verificaRFC = async (req, res) => {
   } = req.body;
   
   console.log(req.body);
-  await pool.query(
+  console.log(rfcstored);
+  /*await pool.query(
     "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
     [rfc],
     (err, result) => {
@@ -26,19 +29,19 @@ exports.verificaRFC = async (req, res) => {
 };
 
 // Validación de Token
-/*exports.validaToken = async (req, res) => {
+exports.validaToken = async (req, res) => {
     const {
       token
     } = req.body;
 
     await pool.query(
-      'SELECT * FROM administrador WHERE Correo = ? AND Contrasena = ?',  [token],   (err, result) => {
+      'SELECT COUNT(*) AS token FROM cliente WHERE Token = ? ',  [token],   (err, result) => {
        
         if (err) { /// Si hubo un error en el Query 
           // Manda un Mensaje de error para probar la API
           res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
           console.log(err);
-        } else {         // Si no hubo error en la consulta, envia el resultado      
+        } else if({         // Si no hubo error en la consulta, envia el resultado      
             res.status(200).send(result);
             console.log(result);
 
