@@ -4,7 +4,7 @@ rfcstored = rfc;
 
 
 //verifica RFC
-exports.verificaRFC = (req, res) => {
+exports.verificaRFC = async (req, res) => {
 
   const {
     rfc
@@ -13,8 +13,7 @@ exports.verificaRFC = (req, res) => {
   console.log(req.body);
   console.log(rfcstored);
 
-};
-  /*await pool.query(
+  await pool.query(
     "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
     [rfc],
     (err, result) => {
@@ -30,7 +29,7 @@ exports.verificaRFC = (req, res) => {
   );
 };
 
-// Validación de Token
+/*// Validación de Token
 exports.validaToken = async (req, res) => {
     const {
       token
