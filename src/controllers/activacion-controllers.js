@@ -12,6 +12,8 @@ exports.verificaRFC = async (req, res) => {
   
   console.log(req.body);
   console.log(rfcstored);
+
+};
   /*await pool.query(
     "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
     [rfc],
