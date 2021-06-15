@@ -25,7 +25,7 @@ exports.verificaRFC = async (req, res) => {
   );
 };
 
-/*// Validación de Token
+// /*// Validación de Token
 exports.validaToken = async (req, res) => {
     const {
       token
@@ -38,11 +38,11 @@ exports.validaToken = async (req, res) => {
           // Manda un Mensaje de error para probar la API
           res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
           console.log(err);
-        } else if({         // Si no hubo error en la consulta, envia el resultado      
+        } else {         // Si no hubo error en la consulta, envia el resultado      
             res.status(200).send(result);
             console.log(result);
 
         }
       }
     );
-  };*/
+  };
