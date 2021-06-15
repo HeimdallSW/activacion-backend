@@ -1,6 +1,6 @@
 const pool = require("../config/dbConection.js");
 
-rfcstored = rfc;
+let rfcstored = rfc;
 
 
 //verifica RFC
