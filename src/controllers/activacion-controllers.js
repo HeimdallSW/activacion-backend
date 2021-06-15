@@ -4,7 +4,7 @@ rfcstored = rfc;
 
 
 //verifica RFC
-exports.verificaRFC = async (req, res) => {
+exports.verificaRFC = (req, res) => {
 
   const {
     rfc
