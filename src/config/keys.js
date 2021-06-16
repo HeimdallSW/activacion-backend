@@ -2,11 +2,11 @@ module.exports = {
 
    // Establecimiento de parametros de conexión a la Base de Datos
      database: {
-        host: 'localhost',
+        host: 'us-cdbr-east-04.cleardb.com',
         port: '3306',
-        user: 'root',
-        password: '',
-        database: 'bd_heimdall_admin'  
+        user: 'bd44f845bbaf18',
+        password: 'ab2cde10',
+        database: 'heroku_b21b25474d81c3d'  
      }
 
 
