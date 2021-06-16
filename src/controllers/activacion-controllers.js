@@ -10,9 +10,7 @@ exports.verificaRFC = async (req, res) => {
   } = req.body;
 
   await pool.query(
-    "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", 
-    [rfc],
-    (err, result) => {
+    "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", [rfc], (err, result) => {
       if (err) {
         res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
         console.log(err);
@@ -28,39 +26,40 @@ exports.verificaRFC = async (req, res) => {
   );
 };
 
+
 // Validación de Token
 exports.validaToken = async (req, res) => {
-    const {
-      token
-    } = req.body;
-    
-    await pool.query(
-      'SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token],   (err, result) => {
-       
-        if (err) { /// Si hubo un error en el Query 
-          // Manda un Mensaje de error para probar la API
-          res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
-          console.log(err);
-
-        } else if(result[0].cuenta == 0){ 
-            
-          console.log(result);
-         res.status(200).send('TNF');// TNF : Token Not Found.
-         console.log('TNF');
-        
-      }else {
-        rfcStored2 = result[0].RFC;
-
-        if(rfcStored1==rfcStored2){
-          console.log('pertenece');
-        }else{
-          console.log('no pertenece');
-          res.status(200).send('NM'); // NM: No Match.
-        } 
-      }
-    }
-    );
-    
-
+  const {
+    token
+  } = req.body;
   
+  await pool.query(
+    'SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token],   (err, result) => {
+     
+      if (err) { /// Si hubo un error en el Query 
+        // Manda un Mensaje de error para probar la API
+        res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
+        console.log(err);
+
+      } else if(result[0].cuenta == 0){ 
+          
+        console.log(result);
+       res.status(200).send('TNF');// TNF : Token Not Found.
+       console.log('TNF');
+      
+    }else {
+      rfcStored2 = result[0].RFC;
+
+      if(rfcStored1==rfcStored2){
+        console.log('pertenece');
+      }else{
+        console.log('no pertenece');
+        res.status(200).send('NM'); // NM: No Match.
+      } 
+    }
+  }
+  );
+  
+
+
 };
