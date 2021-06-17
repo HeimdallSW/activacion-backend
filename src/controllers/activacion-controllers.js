@@ -61,8 +61,9 @@ exports.validaToken = async (req, res) => {
               res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
               console.log(err);
             }else {
-              console.log('result');
-              res.status(200).send(result);
+            //  res.status(200).send(result);
+              console.log(result);
+             
 
               if(result[0].StatusCliente == 0){
 
