@@ -58,7 +58,7 @@ exports.validaToken = async (req, res) => {
       }else{
         console.log('no pertenece');
      //   res.status(200).send('NM'); // NM: No Match.
-        res.status(200).json({ exito: 'nM' })
+        res.status(200).json({ error: 'NM' }) // NM: No Match.
       } 
     }
   }
