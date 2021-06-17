@@ -42,9 +42,9 @@ exports.validaToken = async (req, res) => {
         console.log(err);
 
       } else if(result[0].cuenta == 0){ 
-        res.status(200).send(result);// TNF : Token Not Found.
+        res.status(200).send('TNF');// TNF : Token Not Found.
         console.log(result);
-       console.log('Token Not Found');
+        console.log('Token Not Found');
       
     //  res.status(200).json({ error: 'TNF' })
       
