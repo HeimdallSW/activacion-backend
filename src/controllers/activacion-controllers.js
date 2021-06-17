@@ -41,8 +41,8 @@ exports.validaToken = async (req, res) => {
         console.log(err);
 
       } else if(result[0].cuenta == 0){ 
-        res.status(200).send({status: 'TNF'});// TNF : Token Not Found.
         // console.log(result);
+        res.status(200).send({status: 'TNF'});// TNF : Token Not Found.    
         console.log('Token Not Found');  
 
     }
@@ -92,17 +92,15 @@ exports.validaToken = async (req, res) => {
                           // console.log('SA', fecha[0].FechaActivacion.toISOString().slice(0,10));//SA: Software Activated
                           res.status(200).send({ status: 'SA', fecha: fecha[0].FechaActivacion.toISOString().slice(0,10) });
                     }      
-                  
                 })     
-
             }
 
           })//activa cliente
             
           }else if(result[0].FechaActivacion != 'NULL'){
 
-            res.status(200).send('SAA');
-            console.log('SAA');// SAA: Software activated already
+            res.status(200).send({status: 'SAA', fecha: result[0].FechaActivacion.toISOString().slice(0,10)});// NM: No Match.  
+            console.log('Software activated already');// SAA: Software activated already
             
             
             }
@@ -111,10 +109,8 @@ exports.validaToken = async (req, res) => {
       
       //  res.status(200).json({ exito: 'M' })
       }else{
-        res.status(200).send('NM'); // NM: No Match.
-        console.log('No pertenece');
-      
-     //   res.status(200).json({ error: 'NM' }) // NM: No Match.
+        res.status(200).send({status: 'NM'});// NM: No Match.    
+        console.log('El token coincide con el RFC');
       } 
     }
   }
