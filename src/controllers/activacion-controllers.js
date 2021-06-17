@@ -89,7 +89,7 @@ exports.validaToken = async (req, res) => {
                           res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
                           console.log(err);
                         }else {
-                          console.log('SA', fecha[0].FechaActivacion.toISOString().slice(0,10));//SA: Software Activated
+                          // console.log('SA', fecha[0].FechaActivacion.toISOString().slice(0,10));//SA: Software Activated
                           res.status(200).send({ status: 'SA', fecha: fecha[0].FechaActivacion.toISOString().slice(0,10) });
                     }      
                   
