@@ -44,14 +44,16 @@ exports.validaToken = async (req, res) => {
       } else if(result[0].cuenta == 0){ 
           
         console.log(result);
-       res.status(200).send('TNF');// TNF : Token Not Found.
        console.log('TNF');
+       res.status(200).send('TNF');// TNF : Token Not Found.
+      //  res.status(500).json({ error: 'TNF' })
       
     }else {
       rfcStored2 = result[0].RFC;
 
       if(rfcStored1==rfcStored2){
         console.log('pertenece');
+        res.status(200).send('M'); // NM: No Match.
       }else{
         console.log('no pertenece');
         res.status(200).send('NM'); // NM: No Match.
