@@ -53,6 +53,60 @@ exports.validaToken = async (req, res) => {
       if(rfcStored1==rfcStored2){
         res.status(200).send('M'); // M:  Match.
         console.log('pertenece');
+
+        await pool.query(
+          'SELECT StatusCliente, FechaActivacion FROM cliente WHERE  RFC= ?', [rfcStored1], async (err, result) =>{
+            if (err) { /// Si hubo un error en el Query 
+              // Manda un Mensaje de error para probar la API
+              res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
+              console.log(err);
+            }else {
+              console.log('result');
+              res.status(200).send(result);
+
+              if(result[0].StatusCliente == 0){
+
+               const SoftwareAct = {
+                 StatusCliente: ('1'),
+                 FechaActivacion: new Date()
+               }
+             await pool.query(
+                'UPDATE cliente SET ? WHERE RFC = ?', [SoftwareAct, rfcStored1], async (err, result) =>{
+                  if (err) { /// Si hubo un error en el Query 
+                    // Manda un Mensaje de error para probar la API
+                    res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
+                    console.log(err);
+                  }else{
+                    
+                    console.log(result);
+                    //res.status(200).send(result); //A: activado
+
+                    await pool.query(
+                      'SELECT FechaActivacion FROM cliente WHERE  RFC= ?', [rfcStored1], (err, fecha) =>{
+                        if (err) { /// Si hubo un error en el Query 
+                          // Manda un Mensaje de error para probar la API
+                          res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
+                          console.log(err);
+                        }else {
+                          console.log('SA', fecha[0].FechaActivacion.toISOString().slice(0,10));//SA: Software Activated
+                          res.status(200).send({ status: 'SA', fecha: fecha[0].FechaActivacion.toISOString().slice(0,10) });
+                    }      
+                  
+                })     
+
+            }
+
+          })//activa cliente
+            
+          }else if(result[0].FechaActivacion != 'NULL'){
+
+            res.status(200).send('SAA');
+            console.log('SAA');// SAA: Software activated already
+            
+            
+            }
+        }
+      })
       
       //  res.status(200).json({ exito: 'M' })
       }else{
