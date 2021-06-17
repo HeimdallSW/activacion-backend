@@ -111,14 +111,13 @@ exports.validaToken = async (req, res) => {
       //  res.status(200).json({ exito: 'M' })
       }else{
         res.status(200).send('NM'); // NM: No Match.
-        console.log('no pertenece');
+        console.log('No pertenece');
       
      //   res.status(200).json({ error: 'NM' }) // NM: No Match.
       } 
     }
   }
   );
-  
 
 
 };
