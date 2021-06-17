@@ -33,7 +33,7 @@ exports.validaToken = async (req, res) => {
     token
   } = req.body;
   
-  await pool.query('SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token],   (err, result) => {
+  await pool.query('SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token], async   (err, result) => {
      
       if (err) { /// Si hubo un error en el Query 
         // Manda un Mensaje de error para probar la API
