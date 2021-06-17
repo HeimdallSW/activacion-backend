@@ -42,22 +42,26 @@ exports.validaToken = async (req, res) => {
         console.log(err);
 
       } else if(result[0].cuenta == 0){ 
-          
+        res.status(200).send({ error: 'TNF' });// TNF : Token Not Found.
         console.log(result);
        console.log('TNF');
-      res.status(200).send({ error: 'TNF' });// TNF : Token Not Found.
+      
     //  res.status(200).json({ error: 'TNF' })
       
-    }else {
+    }
+    
+    else {
       rfcStored2 = result[0].RFC;
 
       if(rfcStored1==rfcStored2){
+        res.status(200).send('M'); // NM: No Match.
         console.log('pertenece');
-       res.status(200).send('M'); // NM: No Match.
+      
       //  res.status(200).json({ exito: 'M' })
       }else{
+        res.status(200).send('NM'); // NM: No Match.
         console.log('no pertenece');
-       res.status(200).send('NM'); // NM: No Match.
+      
      //   res.status(200).json({ error: 'NM' }) // NM: No Match.
       } 
     }
