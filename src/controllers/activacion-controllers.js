@@ -33,8 +33,7 @@ exports.validaToken = async (req, res) => {
     token
   } = req.body;
   
-  await pool.query(
-    'SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token],   (err, result) => {
+  await pool.query('SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token],   (err, result) => {
      
       if (err) { /// Si hubo un error en el Query 
         // Manda un Mensaje de error para probar la API
@@ -44,17 +43,15 @@ exports.validaToken = async (req, res) => {
       } else if(result[0].cuenta == 0){ 
         res.status(200).send('TNF');// TNF : Token Not Found.
         console.log(result);
-        console.log('Token Not Found');
-      
-    //  res.status(200).json({ error: 'TNF' })
-      
+        console.log('Token Not Found');  
+    //  res.status(200).json({ error: 'TNF' }) 
     }
     
     else {
       rfcStored2 = result[0].RFC;
 
       if(rfcStored1==rfcStored2){
-        res.status(200).send('M'); // NM: No Match.
+        res.status(200).send('M'); // M:  Match.
         console.log('pertenece');
       
       //  res.status(200).json({ exito: 'M' })
