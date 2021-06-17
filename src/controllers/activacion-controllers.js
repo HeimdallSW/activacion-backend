@@ -51,8 +51,8 @@ exports.validaToken = async (req, res) => {
       rfcStored2 = result[0].RFC;
 
       if(rfcStored1==rfcStored2){
-        res.status(200).send('M'); // M:  Match.
-        console.log('pertenece');
+        // res.status(200).send('M'); // M:  Match.
+        // console.log('pertenece');
 
         await pool.query(
           'SELECT StatusCliente, FechaActivacion FROM cliente WHERE  RFC= ?', [rfcStored1], async (err, result) =>{
