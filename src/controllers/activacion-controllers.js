@@ -45,20 +45,20 @@ exports.validaToken = async (req, res) => {
           
         console.log(result);
        console.log('TNF');
-      // res.status(200).send('TNF');// TNF : Token Not Found.
-      res.status(200).json({ error: 'TNF' })
+      res.status(200).send({ error: 'TNF' });// TNF : Token Not Found.
+    //  res.status(200).json({ error: 'TNF' })
       
     }else {
       rfcStored2 = result[0].RFC;
 
       if(rfcStored1==rfcStored2){
         console.log('pertenece');
-      //  res.status(200).send('M'); // NM: No Match.
-        res.status(200).json({ exito: 'M' })
+       res.status(200).send('M'); // NM: No Match.
+      //  res.status(200).json({ exito: 'M' })
       }else{
         console.log('no pertenece');
-     //   res.status(200).send('NM'); // NM: No Match.
-        res.status(200).json({ error: 'NM' }) // NM: No Match.
+       res.status(200).send('NM'); // NM: No Match.
+     //   res.status(200).json({ error: 'NM' }) // NM: No Match.
       } 
     }
   }
