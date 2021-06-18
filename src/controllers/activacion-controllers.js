@@ -9,8 +9,7 @@ exports.verificaRFC = async (req, res) => {
     rfc
   } = req.body;
 
-  await pool.query(
-    "SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?", [rfc], (err, result) => {
+  await pool.query('SELECT COUNT(*) as resultado FROM cliente WHERE RFC = ?', [rfc], (err, result) => {
       if (err) {
         res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
         console.log(err);
@@ -33,7 +32,7 @@ exports.validaToken = async (req, res) => {
     token
   } = req.body;
   
-  await pool.query('SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token], async   (err, result) => {
+  await pool.query('SELECT COUNT(*) AS cuenta, RFC FROM cliente WHERE Token = ? ',  [token], async (err, result) => {
      
       if (err) { /// Si hubo un error en el Query 
         // Manda un Mensaje de error para probar la API
@@ -110,7 +109,7 @@ exports.validaToken = async (req, res) => {
       //  res.status(200).json({ exito: 'M' })
       }else{
         res.status(200).send({status: 'NM'});// NM: No Match.    
-        console.log('El token coincide con el RFC');
+        console.log('El token NO coincide con el RFC');
       } 
     }
   }
