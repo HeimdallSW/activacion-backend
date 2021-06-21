@@ -2,6 +2,9 @@ const pool = require("../config/dbConection.js");
 var rfcStored1 = 0;
 var rfcStored2 = 0;
 
+var meses = new Array ('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+var dias = new Array ('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+
 //verifica RFC
 exports.verificaRFC = async (req, res) => {
 
@@ -88,8 +91,8 @@ exports.validaToken = async (req, res) => {
                           res.status(500).send( {mensaje: 'Error en la consulta', code: err.code,  sqlMessage: err.sqlMessage, sql: err.sql } ); 
                           console.log(err);
                         }else {
-                          // console.log('SA', fecha[0].FechaActivacion.toISOString().slice(0,10));//SA: Software Activated
-                          res.status(200).send({ status: 'SA', fecha: fecha[0].FechaActivacion.toISOString().slice(0,10) });
+                          console.log('SA', dias[fecha[0].FechaActivacion.getDay()]+' '+fecha[0].FechaActivacion.getDate()+' de '+meses[fecha[0].FechaActivacion.getMonth()]+' de '+fecha[0].FechaActivacion.getFullYear());//SA: Software Activated
+                          res.status(200).send({ status: 'SA', fecha: dias[fecha[0].FechaActivacion.getDay()]+' '+fecha[0].FechaActivacion.getDate()+' de '+meses[fecha[0].FechaActivacion.getMonth()]+' del '+fecha[0].FechaActivacion.getFullYear()});
                     }      
                 })     
             }
@@ -98,8 +101,9 @@ exports.validaToken = async (req, res) => {
             
           }else if(result[0].FechaActivacion != 'NULL'){
 
-            res.status(200).send({status: 'SAA', fecha: result[0].FechaActivacion.toISOString().slice(0,10)});// NM: No Match.  
-            console.log('Software activated already');// SAA: Software activated already
+            console.log('SAA', dias[result[0].FechaActivacion.getDay()]+' '+result[0].FechaActivacion.getDate()+' de '+meses[result[0].FechaActivacion.getMonth()]+' del '+result[0].FechaActivacion.getFullYear());// SAA: Software activated already
+            res.status(200).send({ status: 'SAA', fecha: dias[result[0].FechaActivacion.getDay()]+' '+result[0].FechaActivacion.getDate()+' de '+meses[result[0].FechaActivacion.getMonth()]+' del '+result[0].FechaActivacion.getFullYear()});
+              
             
             
             }
