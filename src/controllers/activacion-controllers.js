@@ -67,7 +67,7 @@ exports.validaToken = async (req, res) => {
               console.log(result);
              
 
-              if(result[0].StatusCliente == 0){
+              if(result[0].StatusCliente == 0||result[0].StatusCliente == null){
 
                const SoftwareAct = {
                  StatusCliente: ('1'),
@@ -99,13 +99,15 @@ exports.validaToken = async (req, res) => {
 
           })//activa cliente
             
-          }else if(result[0].FechaActivacion != 'NULL'){
+          }else if(result[0].FechaActivacion != null){
 
             console.log('SAA', dias[result[0].FechaActivacion.getDay()]+' '+result[0].FechaActivacion.getDate()+' de '+meses[result[0].FechaActivacion.getMonth()]+' del '+result[0].FechaActivacion.getFullYear());// SAA: Software activated already
             res.status(200).send({ status: 'SAA', fecha: dias[result[0].FechaActivacion.getDay()]+' '+result[0].FechaActivacion.getDate()+' de '+meses[result[0].FechaActivacion.getMonth()]+' del '+result[0].FechaActivacion.getFullYear()});
-              
-            
-            
+                      
+            }
+            else{
+              res.send({status: 'la fecha de activación es nula'});
+              console.log({status: 'la fecha de activación es nula'});
             }
         }
       })
